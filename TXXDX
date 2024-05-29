@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include <math.h>
+  
+int main ()
+{
+
+	int i=1, g=0;
+	FILE*fr;	                  /*указатель на файл*/ 
+	fr=fopen("lab.txt", "w");
+while(i<2)   
+{	
+	ur=fopen("lab.txt", "a");    
+								  /*объявление*/							  
+    float a0, a1, a2, a3, x0, x1, e, delta;         /*действительные*/
+
+ printf("Данная программа находит корни уравнения: a0+a1*sin(a2*x)+a3*ln(x)=0\n");
+ fprintf(fr, "Данная программа находит корни уравнения: a0+a1*sin(a2*x)+a3*ln(x)=0\n");
+ printf("Введите коэффициент a0:");
+ scanf("%f", &a0);
+ printf("Введите коэффициент a1:");
+ scanf("%f", &a1);
+ printf("Введите коэффициент a2:");
+ scanf("%f", &a2);	
+ printf("Введите коэффициент a3:");
+ scanf("%f", &a3);
+ printf("Уравнение имеет вид: %f+%f*sin(%f*x)+%f*ln(x)=0\n", a0, a1, a2, a3);
+ fprintf(fr, "Уравнение имеет вид: %f+%f*sin(%f*x)+%f*ln(x)=0\n", a0, a1, a2, a3);
+ printf("Введите начальное приближение x0:");
+ scanf("%f", &x0);
+ fprintf(fr, "Начальное приближение= %f\n", x0);	
+ printf("Введите точность:");
+ scanf("%f", &e);
+ fprintf(fr, "Точность= %f\n", e);
+
+ do
+ {
+  x1=x0-(a0+a1*sin(a2*x0)+a3*log(x0))/(a2*a1*cos(a2*x0)+a3/x0);
+  delta=x1-x0;
+  x0=x1;
+  g=g+1;
+ } while(fabs(delta)>e); //Функция fabs вычисляет абсолютное значение (модуль) и возвращает его |х|.//
+ printf("Корень уравнения= %f\n", x0);
+ fprintf(fr, "Корень уравнения= %f\n", x0);	
+ printf("Колличество циклов= %d\n", g);
+ fclose(fr);
+ printf("Хотите закрыть программу ?\nНет - 1\nДа - 2\n");
+ scanf("%d",&i);
+}
+}
